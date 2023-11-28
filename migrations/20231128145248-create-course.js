@@ -18,7 +18,7 @@ module.exports = {
         allowNull: false,
       },
       description: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT('long'),
         allowNull: false,
       },
       short_desc: {
