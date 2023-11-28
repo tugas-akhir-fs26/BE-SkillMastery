@@ -16,12 +16,13 @@ module.exports = (sequelize, DataTypes) => {
   Course.init({
     title: DataTypes.STRING,
     price: DataTypes.STRING,
-    description: DataTypes.STRING,
+    description: DataTypes.TEXT('long'),
     short_desc: DataTypes.STRING,
     notes: DataTypes.STRING,
     duration: DataTypes.STRING,
     image: DataTypes.STRING,
-    category: DataTypes.STRING
+    category: DataTypes.STRING,
+    mentorID : DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Course',
