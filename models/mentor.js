@@ -11,6 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Mentor.belongsTo(models.User, { foreignKey: 'userID' });
+      Mentor.hasMany(models.Course, { foreignKey: 'mentorID' });
     }
   }
   Mentor.init({

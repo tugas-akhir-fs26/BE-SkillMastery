@@ -5,7 +5,7 @@ module.exports = {
   async up (queryInterface, Sequelize) {
     return queryInterface.bulkInsert('Contents', [{
       courseID: 1,
-      section : "{section_1 : 'bla bla bla', section_2 : 'bla bla bla'}",
+      section : `{"section_1" : "bla bla bla", "section_2" : 'bla bla bla'}`,
       createdAt: new Date(),
       updatedAt: new Date()
     },

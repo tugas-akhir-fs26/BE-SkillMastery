@@ -17,15 +17,13 @@ module.exports = {
             tableName : "Courses"
           },
           key : "id"
-        }
+        },
+        onDelete : "CASCADE",
+        onUpdate : "CASCADE"
       },
       section: {
         type: Sequelize.TEXT('long'),
         allowNull: false,
-      },
-      mediaUrl: {
-        type: Sequelize.STRING,
-        allowNull: true,
       },
       createdAt: {
         allowNull: false,

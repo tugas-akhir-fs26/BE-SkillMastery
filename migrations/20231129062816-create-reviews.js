@@ -17,7 +17,9 @@ module.exports = {
             tableName : "Users"
           },
           key : "id"
-        }
+        },
+        onDelete : "CASCADE",
+        onUpdate : "CASCADE"
       },
       courseID: {
         type: Sequelize.INTEGER,
@@ -27,7 +29,9 @@ module.exports = {
             tableName : "Courses"
           },
           key : "id"
-        }
+        },
+        onDelete : "CASCADE",
+        onUpdate : "CASCADE"
       },
       rating: {
         type: Sequelize.FLOAT

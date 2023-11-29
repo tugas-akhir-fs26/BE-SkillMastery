@@ -37,9 +37,17 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      category: {
+      categoryID: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        references : {
+          model : {
+            tableName : "Categories"
+          },
+          key : "id"
+        },
+        onDelete : "CASCADE",
+        onUpdate : "CASCADE"
       },
       mentorID: {
         type: Sequelize.INTEGER,
@@ -49,7 +57,9 @@ module.exports = {
             tableName : "Mentors"
           }, 
           key : "id"
-        }
+        },
+        onDelete : "CASCADE",
+        onUpdate : "CASCADE"
       },
       createdAt: {
         allowNull: false,

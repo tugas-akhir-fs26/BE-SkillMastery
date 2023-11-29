@@ -17,7 +17,9 @@ module.exports = {
             tableName : "Users"
           },
           key : "id"
-        }
+        },
+        onDelete : "CASCADE",
+        onUpdate : "CASCADE"
       },
       mentorID: {
         type: Sequelize.INTEGER,
@@ -27,7 +29,9 @@ module.exports = {
             tableName : "Mentors"
           },
           key : "id"
-        }
+        },
+        onDelete : "CASCADE",
+        onUpdate : "CASCADE"
       },
       enrollment_date: {
         type: Sequelize.DATE,

@@ -11,12 +11,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Contents.belongsTo(models.Course, { foreignKey: 'courseID' });
     }
   }
   Contents.init({
     courseID: DataTypes.INTEGER,
     section: DataTypes.STRING,
-    mediaUrl: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Contents',
