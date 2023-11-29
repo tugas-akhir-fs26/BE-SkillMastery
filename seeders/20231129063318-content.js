@@ -11,7 +11,7 @@ module.exports = {
     },
     {
       courseID: 2,
-      section : "{section_1 : 'bla bla bla', section_2 : 'bla bla bla'}",
+      section : `{"section_1" : "bla bla bla", "section_2" : 'bla bla bla'}`,
       createdAt: new Date(),
       updatedAt: new Date()
     },
