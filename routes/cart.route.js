@@ -1,11 +1,12 @@
 const express = require('express');
 const { addToCart, getCartByID, deleteCartsByIdCart } = require('../controllers/cart.controller');
 const route = express.Router()
+const authToken = require('../middlewares/auth.middleware')
 
 
-route.post("/", addToCart)
-route.get("/:id", getCartByID)
-route.delete("/:id", deleteCartsByIdCart)
+route.post("/", authToken,addToCart)
+route.get("/:id", authToken,getCartByID)
+route.delete("/:id", authToken,deleteCartsByIdCart)
 
 
 module.exports = route
