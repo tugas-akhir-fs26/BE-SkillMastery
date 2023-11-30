@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   Enrollments.init(
     {
       userID: DataTypes.INTEGER,
-      mentorID: DataTypes.INTEGER,
+      courseID: DataTypes.INTEGER,
       enrollment_date: DataTypes.DATE,
     },
     {

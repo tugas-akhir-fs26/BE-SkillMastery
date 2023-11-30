@@ -21,12 +21,12 @@ module.exports = {
         onDelete : "CASCADE",
         onUpdate : "CASCADE"
       },
-      mentorID: {
+      courseID: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references :{
           model : {
-            tableName : "Mentors"
+            tableName : "Courses"
           },
           key : "id"
         },
