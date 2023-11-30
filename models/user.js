@@ -15,12 +15,12 @@ module.exports = (sequelize, DataTypes) => {
       });
 
       User.hasOne(models.Mentor, { foreignKey: "userID" });
-      User.hasOne(models.MentorProfile, { foreignKey: "userID" });
+      User.hasOne(models.Mentor_Profiles, { foreignKey: "userID" });
 
       User.hasMany(models.Reviews, { foreignKey: 'userID' });
       User.hasMany(models.Course, { foreignKey: 'mentorID' });
 
-      User.hasMany(models.Cart, { foreignKey: 'userID' });
+      User.hasMany(models.Carts, { foreignKey: 'userID' });
     }
   }
   User.init(

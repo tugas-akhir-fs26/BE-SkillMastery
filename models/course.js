@@ -15,14 +15,14 @@ module.exports = (sequelize, DataTypes) => {
         through: 'Enrollments',
         foreignKey: 'courseID',
       });
-      Course.hasMany(models.Content, { foreignKey: 'courseID' });
+      Course.hasMany(models.Contents, { foreignKey: 'courseID' });
 
-      Course.hasMany(models.Review, { foreignKey: 'courseID' });
+      Course.hasMany(models.Reviews, { foreignKey: 'courseID' });
       Course.belongsTo(models.User, { foreignKey: 'mentorID' });
 
-      Course.hasMany(models.Cart, { foreignKey: 'courseID' });
+      Course.hasMany(models.Carts, { foreignKey: 'courseID' });
 
-      Course.belongsTo(models.Category, { foreignKey: 'categoryID' });
+      Course.belongsTo(models.Categories, { foreignKey: 'categoryID' });
       
       Course.belongsTo(models.Mentor, { foreignKey: 'mentorID' });
     }
