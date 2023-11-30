@@ -15,7 +15,7 @@ module.exports = {
         duration: "2 jam",
         image:
           "https://res.cloudinary.com/dzajixld0/image/upload/v1701184049/web_qywjfy.jpg",
-        category: 1,
+        categoryID: 1,
         mentorID: 1,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -30,7 +30,7 @@ module.exports = {
         duration: "2 jam",
         image:
           "https://res.cloudinary.com/dzajixld0/image/upload/v1701184049/figma_c2zvap.jpg",
-        category: 1,
+        categoryID: 1,
         mentorID: 1,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -45,7 +45,7 @@ module.exports = {
         duration: "3 jam",
         image:
           "https://res.cloudinary.com/dzajixld0/image/upload/v1701184048/mobile_yx7o9x.jpg",
-        category: 1,
+        categoryID: 1,
         mentorID: 1,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -60,7 +60,7 @@ module.exports = {
         duration: "3 jam",
         image:
           "https://res.cloudinary.com/dzajixld0/image/upload/v1701184050/photographer_lygdey.jpg",
-        category: 1,
+        categoryID: 1,
         mentorID: 1,
         createdAt: new Date(),
         updatedAt: new Date(),

@@ -2,47 +2,19 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Courses', {
+    await queryInterface.createTable('Mentor_Profiles', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      title: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      price: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      description: {
-        type: Sequelize.TEXT('long'),
-        allowNull: false,
-      },
-      short_desc: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      notes: {
-        type: Sequelize.STRING,
-        allowNull: true,
-      },
-      duration: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      image: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      categoryID: {
+      userID: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references : {
+        references :  {
           model : {
-            tableName : "Categories"
+            tableName : "Users"
           },
           key : "id"
         },
@@ -52,14 +24,22 @@ module.exports = {
       mentorID: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references : {
+        references :  {
           model : {
-            tableName : "Mentors"
-          }, 
+            tableName : "Users"
+          },
           key : "id"
         },
         onDelete : "CASCADE",
         onUpdate : "CASCADE"
+      },
+      bio: {
+        type: Sequelize.TEXT,
+        allowNull : false
+      },
+      skill: {
+        type: Sequelize.TEXT,
+        allowNull : false
       },
       createdAt: {
         allowNull: false,
@@ -72,6 +52,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Courses');
+    await queryInterface.dropTable('Mentor_Profiles');
   }
 };

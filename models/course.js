@@ -11,6 +11,20 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Course.belongsToMany(models.User, {
+        through: 'Enrollments',
+        foreignKey: 'courseID',
+      });
+      Course.hasMany(models.Contents, { foreignKey: 'courseID' });
+
+      Course.hasMany(models.Reviews, { foreignKey: 'courseID' });
+      Course.belongsTo(models.User, { foreignKey: 'mentorID' });
+
+      Course.hasMany(models.Carts, { foreignKey: 'courseID' });
+
+      Course.belongsTo(models.Categories, { foreignKey: 'categoryID' });
+      
+      Course.belongsTo(models.Mentor, { foreignKey: 'mentorID' });
     }
   }
   Course.init({
@@ -21,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
     notes: DataTypes.STRING,
     duration: DataTypes.STRING,
     image: DataTypes.STRING,
-    category: DataTypes.STRING,
+    categoryID: DataTypes.STRING,
     mentorID : DataTypes.STRING
   }, {
     sequelize,

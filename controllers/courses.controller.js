@@ -1,6 +1,6 @@
 // @ts-nocheck
-const { where } = require("sequelize");
 const { Course } = require("../models");
+const { Op } = require("sequelize");
 
 module.exports = {
   getCourses: async (req, res) => {
@@ -14,6 +14,43 @@ module.exports = {
       }
     } catch (error) {
       console.error(error);
+    }
+  },
+  getCourseByName: async (req, res) => {
+    try {
+      const { search } = req.query;
+      if (!search) {
+        return res.status(400).json({
+          ok: false,
+          message: "Parameter pencarian tidak diberikan.",
+        });
+      }
+
+      const data = await Course.findAll({
+        where: {
+          title: {
+            [Op.like]: `%${search}%`,
+          },
+        },
+      });
+
+      if (data.length > 0) {
+        return res.status(200).json({
+          ok: true,
+          data: data,
+        });
+      } else {
+        return res.status(404).json({
+          ok: false,
+          message: "Tidak ada data yang ditemukan.",
+        });
+      }
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({
+        ok: false,
+        message: "Terjadi kesalahan server.",
+      });
     }
   },
   getCoursesByID: async (req, res) => {
@@ -129,6 +166,41 @@ module.exports = {
       });
     } catch (error) {
       console.error(error);
+    }
+  },
+  // fungsi ini untuk mengambil course apa saja yang dimiliki oleh mentor
+  getMentorCourse: async (req, res) => {
+    try{
+      const { mentor } = req.query;
+      if (!mentor) {
+        return res.status(400).json({
+          ok: false,
+          message: "Parameter pencarian tidak diberikan.",
+        });
+      }
+    
+    const mentorID = parseInt(mentor, 10);
+    const data = await Course.findAll({
+      where: {
+        mentorID: mentorID,
+      },
+    });
+    if (data.length > 0) {
+      return res.status(200).json({
+        ok : true,
+        course : data
+      })
+    }
+
+    res.status(400).json({
+      ok : false,
+      message : "gagal mengambil data"
+    })
+    }catch(error){
+      res.status(400).json({
+        ok : false,
+        error : error
+      })
     }
   },
 };
