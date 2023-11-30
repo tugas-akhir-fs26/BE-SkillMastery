@@ -5,7 +5,7 @@ module.exports = {
   async up (queryInterface, Sequelize) {
     return queryInterface.bulkInsert('Enrollments', [{
       userID : 1,
-      mentorID : 1,
+      courseID : 1,
       enrollment_date : new Date(),
       createdAt: new Date(),
       updatedAt: new Date(),
