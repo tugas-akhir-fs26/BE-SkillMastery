@@ -29,6 +29,7 @@ module.exports = {
           userId: user.id,
           token,
         });
+        return
       }
 
       res.status(400).json({
