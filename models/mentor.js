@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Mentor.belongsTo(models.User, { foreignKey: 'userID' });
       Mentor.hasMany(models.Course, { foreignKey: 'mentorID' });
+      Mentor.hasOne(models.Mentor_Profiles, { foreignKey: "mentorID" });
     }
   }
   Mentor.init({

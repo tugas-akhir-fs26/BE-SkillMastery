@@ -1,5 +1,5 @@
 // @ts-nocheck
-const { Course } = require("../models");
+const { Course, Mentor, User, Contents } = require("../models");
 const { Op } = require("sequelize");
 const cloudinary = require("../cloudinary");
 
@@ -22,7 +22,7 @@ module.exports = {
       // Ambil parameter query untuk paginasi
       const page = req.query.page || 1;
       const search = req.query.search || "";
-      limit = 8
+      limit = 8;
 
       // Konversi nilai page dan limit ke bilangan bulat
       const pageNumber = parseInt(page, 10);
@@ -30,14 +30,16 @@ module.exports = {
 
       // Hitung posisi awal data
       const offset = (pageNumber - 1) * limitNumber;
-      const totalRows = await Course.count()
+      const totalRows = await Course.count();
 
-      const totalPage = Math.ceil(totalRows / limitNumber)
+      const totalPage = Math.ceil(totalRows / limitNumber);
       // Ambil data dengan paginasi menggunakan Sequelize
       const data = await Course.findAll({
-         where : {title: {
+        where: {
+          title: {
             [Op.like]: `%${search}%`,
-          }},
+          },
+        },
         offset,
         limit: limitNumber,
       });
@@ -46,8 +48,8 @@ module.exports = {
         res.status(200).json({
           ok: true,
           data: data,
-          totalPage : totalPage,
-          totalRows : totalRows,
+          totalPage: totalPage,
+          totalRows: totalRows,
         });
       } else {
         res.status(404).json({
@@ -103,23 +105,47 @@ module.exports = {
   getCoursesByID: async (req, res) => {
     try {
       const { id } = req.params;
-      const data = await Course.findAll({ where: { id: id } });
+
+      // Menggunakan operasi join untuk menggabungkan Course dengan Mentor dan User
+      const data = await Course.findAll({
+        where: { id: id },
+        include: [
+          {
+            model: Mentor,
+            include: [
+              {
+                model: User,
+                attributes: ["Name", "avatar"], 
+              },
+            ],
+          },
+          {
+            model: Contents,
+            attributes: ["section"],
+          },
+        ],
+      });
 
       if (data.length > 0) {
         res.status(200).json({
           ok: true,
           data: data,
         });
+      } else {
+        res.status(404).json({
+          ok: false,
+          message: "Data not found!",
+        });
       }
-
-      res.status(400).json({
-        ok: false,
-        message: "Error saat pengambilan data!",
-      });
     } catch (error) {
       console.error(error);
+      res.status(500).json({
+        ok: false,
+        message: "Internal server error.",
+      });
     }
   },
+
   addCourse: async (req, res) => {
     try {
       const {
