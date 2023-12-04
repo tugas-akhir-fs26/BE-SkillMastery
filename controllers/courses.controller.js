@@ -1,6 +1,7 @@
 // @ts-nocheck
 const { Course } = require("../models");
 const { Op } = require("sequelize");
+const cloudinary = require("../cloudinary");
 
 module.exports = {
   getCourses: async (req, res) => {
@@ -14,6 +15,52 @@ module.exports = {
       }
     } catch (error) {
       console.error(error);
+    }
+  },
+  getPaginationCourse: async (req, res) => {
+    try {
+      // Ambil parameter query untuk paginasi
+      const page = req.query.page || 1;
+      const search = req.query.search || "";
+      limit = 8
+
+      // Konversi nilai page dan limit ke bilangan bulat
+      const pageNumber = parseInt(page, 10);
+      const limitNumber = parseInt(limit, 10);
+
+      // Hitung posisi awal data
+      const offset = (pageNumber - 1) * limitNumber;
+      const totalRows = await Course.count()
+
+      const totalPage = Math.ceil(totalRows / limitNumber)
+      // Ambil data dengan paginasi menggunakan Sequelize
+      const data = await Course.findAll({
+         where : {title: {
+            [Op.like]: `%${search}%`,
+          }},
+        offset,
+        limit: limitNumber,
+      });
+
+      if (data.length > 0) {
+        res.status(200).json({
+          ok: true,
+          data: data,
+          totalPage : totalPage,
+          totalRows : totalRows,
+        });
+      } else {
+        res.status(404).json({
+          ok: false,
+          message: "No courses found.",
+        });
+      }
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({
+        ok: false,
+        message: "Internal server error.",
+      });
     }
   },
   getCourseByName: async (req, res) => {
@@ -86,6 +133,9 @@ module.exports = {
         category,
         mentorID,
       } = req.body;
+      const dataImg = cloudinary.v2.uploader.upload(image, {
+        public_id: dataImg,
+      });
       const data = await Course.create({
         title: title,
         price: price,
@@ -93,7 +143,7 @@ module.exports = {
         short_desc: short_desc,
         notes: notes,
         duration: duration,
-        image: image,
+        image: dataImg.public_id,
         category: category,
         mentorID: mentorID,
       });
@@ -170,7 +220,7 @@ module.exports = {
   },
   // fungsi ini untuk mengambil course apa saja yang dimiliki oleh mentor
   getMentorCourse: async (req, res) => {
-    try{
+    try {
       const { mentor } = req.query;
       if (!mentor) {
         return res.status(400).json({
@@ -178,29 +228,29 @@ module.exports = {
           message: "Parameter pencarian tidak diberikan.",
         });
       }
-    
-    const mentorID = parseInt(mentor, 10);
-    const data = await Course.findAll({
-      where: {
-        mentorID: mentorID,
-      },
-    });
-    if (data.length > 0) {
-      return res.status(200).json({
-        ok : true,
-        course : data
-      })
-    }
 
-    res.status(400).json({
-      ok : false,
-      message : "gagal mengambil data"
-    })
-    }catch(error){
+      const mentorID = parseInt(mentor, 10);
+      const data = await Course.findAll({
+        where: {
+          mentorID: mentorID,
+        },
+      });
+      if (data.length > 0) {
+        return res.status(200).json({
+          ok: true,
+          course: data,
+        });
+      }
+
       res.status(400).json({
-        ok : false,
-        error : error
-      })
+        ok: false,
+        message: "gagal mengambil data",
+      });
+    } catch (error) {
+      res.status(400).json({
+        ok: false,
+        error: error,
+      });
     }
   },
 };
