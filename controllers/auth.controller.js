@@ -25,17 +25,18 @@ module.exports = {
         );
 
         res.status(200).json({
+          ok: true,
           message: "login berhasil",
           userId: user.id,
           token,
         });
-        return
+        return;
       }
 
       res.status(400).json({
-        ok : false,
-        message : "invalid password"
-      })
+        ok: false,
+        message: "invalid password",
+      });
     } catch (error) {
       res.json(error.message);
     }
@@ -43,12 +44,27 @@ module.exports = {
 
   register: async (req, res) => {
     const { Name, email, password } = req.body;
+    if (
+      !Name ||
+      !email ||
+      !password ||
+      Name.trim() === "" ||
+      email.trim() === "" ||
+      password.trim() === ""
+    ) {
+      return res.status(400).json({
+        ok: false,
+        message: "Data tidak boleh kosong",
+      });
+    }
 
     const hash = bcrypt.hashSync(password, saltRounds);
+    
 
     await User.create({ Name: Name, email: email, password: hash });
 
     res.status(201).json({
+      ok: true,
       message: "berhasil mendaftar data user",
     });
   },
