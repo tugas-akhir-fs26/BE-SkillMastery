@@ -1,5 +1,5 @@
 // @ts-nocheck
-const { Mentor, Mentor_Profiles } = require("../models");
+const { Mentor, Mentor_Profiles, User} = require("../models");
 
 module.exports = {
   getMentorByID: async (req, res) => {
@@ -7,6 +7,16 @@ module.exports = {
 
     const mentor = await Mentor.findAll({
       where: { userID: id },
+      include: [
+        {
+          model : User,
+          attributes: ["Name", "avatar"]
+        }, 
+        {
+          model : Mentor_Profiles,
+          attributes: ["bio"]
+        }
+      ]
     });
 
     if (mentor.length > 0) {

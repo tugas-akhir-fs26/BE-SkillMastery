@@ -28,6 +28,7 @@ module.exports = {
           ok: true,
           message: "login berhasil",
           userId: user.id,
+          Avatar: user.Avatar,
           token,
         });
         return;
