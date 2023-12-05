@@ -6,6 +6,62 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     return queryInterface.bulkInsert("Courses", [
       {
+        title: "Menguasai Node JS",
+        price: "Rp200.000",
+        description:
+          "Pelajari keterampilan backend developer dari pemula sampai mahir.",
+        short_desc:
+          "Pelajari keterampilan administratif online dan manajemen waktu untuk menjadi asisten virtual yang sukses.",
+        duration: "10 jam",
+        image: "https://res.cloudinary.com/dzajixld0/image/upload/v1701184049/web_qywjfy.jpg",
+        categoryID: 1, // business
+        mentorID: 1,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        title: "Menguasai Figma",
+        price: "Rp200.000",
+        description:
+          "Pelajari keterampilan desain UI UX dari pemula sampai mahir.",
+        short_desc:
+          "Pelajari keterampilan administratif online dan manajemen waktu untuk menjadi asisten virtual yang sukses.",
+        duration: "10 jam",
+        image: "https://res.cloudinary.com/dzajixld0/image/upload/v1701184049/figma_c2zvap.jpg",
+        categoryID: 1, // business
+        mentorID: 1,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        title: "Menguasai Fotografi",
+        price: "Rp200.000",
+        description:
+          "Pelajari keterampilan menfoto objek dari pemula sampai mahir.",
+        short_desc:
+          "Pelajari keterampilan administratif online dan manajemen waktu untuk menjadi asisten virtual yang sukses.",
+        duration: "10 jam",
+        image: "https://res.cloudinary.com/dzajixld0/image/upload/v1701184050/photographer_lygdey.jpg",
+        categoryID: 1, // business
+        mentorID: 1,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        title: "Menguasai Mobile Development",
+        price: "Rp200.000",
+        description:
+          "Pelajari keterampilan mobile development dari pemula sampai mahir.",
+        short_desc:
+          "Pelajari keterampilan administratif online dan manajemen waktu untuk menjadi asisten virtual yang sukses.",
+        duration: "10 jam",
+        image: "https://res.cloudinary.com/dzajixld0/image/upload/v1701184048/mobile_yx7o9x.jpg",
+        categoryID: 1, // business
+        mentorID: 1,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
         title: "Menguasai Seni Virtual Assistant",
         price: "Rp200.000",
         description:
@@ -14,7 +70,7 @@ module.exports = {
           "Pelajari keterampilan administratif online dan manajemen waktu untuk menjadi asisten virtual yang sukses.",
         duration: "10 jam",
         image: "https://res.cloudinary.com/dzajixld0/image/upload/v1701610212/va_lphkbv.jpg",
-        categoryID: 5, // business
+        categoryID: 1, // business
         mentorID: 1,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -28,7 +84,7 @@ module.exports = {
           "Pelajari teknik penggalian data dan analisis pola untuk mengoptimalkan pengambilan keputusan.",
         duration: "15 jam",
         image: "https://res.cloudinary.com/dzajixld0/image/upload/v1701610213/da_dlmfwq.jpg",
-        categoryID: 5, // business
+        categoryID: 1, // business
         mentorID: 1,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -42,7 +98,7 @@ module.exports = {
           "Membangun keterampilan mengajar yang efektif dan mengelola kelas dengan baik.",
         duration: "8 jam",
         image: "https://res.cloudinary.com/dzajixld0/image/upload/v1701610204/guru_fwpqzg.jpg",
-        categoryID: 5, // business
+        categoryID: 1, // business
         mentorID: 1,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -56,7 +112,7 @@ module.exports = {
           "Tingkatkan kepercayaan diri dan keterampilan berbicara di depan umum.",
         duration: "6 jam",
         image: "https://res.cloudinary.com/dzajixld0/image/upload/v1701610207/ps_lex06g.jpg",
-        categoryID: 5, // business
+        categoryID: 1, // business
         mentorID: 1,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -69,7 +125,7 @@ module.exports = {
         short_desc: "Pelajari pengembangan game dari desain hingga uji coba.",
         duration: "20 jam",
         image: "https://res.cloudinary.com/dzajixld0/image/upload/v1701610214/game_hofjld.jpg",
-        categoryID: 5, // business
+        categoryID: 1, // business
         mentorID: 1,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -83,7 +139,7 @@ module.exports = {
           "Pelajari dasar-dasar kecerdasan buatan dan aplikasinya dalam berbagai industri.",
         duration: "12 jam",
         image: "https://res.cloudinary.com/dzajixld0/image/upload/v1701610207/ai_cpbfnq.jpg",
-        categoryID: 6, // machine learning
+        categoryID: 1, // machine learning
         mentorID: 1,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -97,7 +153,7 @@ module.exports = {
           "Pelajari taktik media sosial yang efektif untuk pertumbuhan bisnis.",
         duration: "10 jam",
         image: "https://res.cloudinary.com/dzajixld0/image/upload/v1701610208/sm_bncgob.jpg",
-        categoryID: 5, // business
+        categoryID: 1, // business
         mentorID: 1,
         createdAt: new Date(),
         updatedAt: new Date(),
