@@ -19,6 +19,21 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
+      {
+        name: "marketing",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: "business",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: "machine learning",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
     ]);
   },
 

@@ -5,8 +5,8 @@ const authToken = require('../middlewares/auth.middleware')
 
 
 route.post("/", authToken,addToCart)
-route.get("/:id", authToken,getCartByID)
-route.delete("/:id", authToken,deleteCartsByIdCart)
+route.get("/:id",authToken, getCartByID)
+route.delete("/course/:id", authToken,deleteCartsByIdCart)
 
 
 module.exports = route

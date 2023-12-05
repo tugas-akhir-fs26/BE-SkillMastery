@@ -69,4 +69,53 @@ module.exports = {
       message: "berhasil mendaftar data user",
     });
   },
+  getDataUserByID: async (req, res) => {
+    const {id} = req.params
+    const data = await User.findOne({where : {id : id}});
+
+    res.status(201).json({
+      ok: true,
+      data : data
+    });
+  },
+  UpdateDataUser: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { Name, Avatar } = req.body;
+  
+      // Find the existing user data
+      const existingUserData = await User.findOne({ where: { id: id } });
+  
+      // Check if the user exists
+      if (!existingUserData) {
+        return res.status(404).json({
+          ok: false,
+          message: "User not found",
+        });
+      }
+  
+      // Update the fields only if they are provided in the request
+      const updatedUserData = {};
+      if (Name !== undefined) {
+        updatedUserData.Name = Name;
+      }
+      if (Avatar !== undefined) {
+        updatedUserData.Avatar = Avatar;
+      }
+  
+      // Perform the update
+      const data = await User.update(updatedUserData, { where: { id: id } });
+  
+      res.status(201).json({
+        ok: true,
+        message: "berhasil update data",
+      });
+    } catch (error) {
+      res.status(500).json({
+        ok: false,
+        error: error.message,
+      });
+    }
+  },
+  
 };

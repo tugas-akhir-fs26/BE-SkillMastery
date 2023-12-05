@@ -1,25 +1,25 @@
 module.exports = {
   "development": {
-    "username": "sql12665711",
-    "password": "Bxqy9weyCm",
-    "database": "sql12665711",
-    "host": "sql12.freesqldatabase.com",
+    "username": "freedb_dionisius-reinaldo",
+    "password": "VH67xzUs7V*eq?p",
+    "database": "freedb_db-skillmastery",
+    "host": "sql.freedb.tech",
     "dialect": "mysql",
     "port" : 3306
   },
   "test": {
-    "username": "sql12665711",
-    "password": "Bxqy9weyCm",
-    "database": "sql12665711",
-    "host": "sql12.freesqldatabase.com",
+    "username": "freedb_dionisius-reinaldo",
+    "password": "VH67xzUs7V*eq?p",
+    "database": "freedb_db-skillmastery",
+    "host": "sql.freedb.tech",
     "dialect": "mysql",
     "port" : 3306
   },
   "production": {
-    "username": "sql12665711",
-    "password": "Bxqy9weyCm",
-    "database": "sql12665711",
-    "host": "sql12.freesqldatabase.com",
+    "username": "freedb_dionisius-reinaldo",
+    "password": "VH67xzUs7V*eq?p",
+    "database": "freedb_db-skillmastery",
+    "host": "sql.freedb.tech",
     "dialect": "mysql",
     "port" : 3306
   }
